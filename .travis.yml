@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t java/koans docker
+  - docker build -t swing-test-env .
 
 script:
-  - docker run java/koans /bin/bash -c "git clone https://github.com/matyb/swing-test-env && gradle -p swint-test-env/app test"
+  - docker run swing-test-env /bin/bash -c "git clone https://github.com/matyb/swing-test-env && gradle -p swint-test-env/app test"
