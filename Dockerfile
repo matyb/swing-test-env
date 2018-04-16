@@ -4,9 +4,12 @@ MAINTAINER Mat Bentley <mathewkbentley@gmail.com>
 ENV JAVA_VERSION 1.8.0
 ENV GRADLE_VERSION 3.4.1
 
-# install wget, git, curl, jdk, which
+# install wget, git, curl, jdk, which, xvfb
 RUN yum remove -y java &&\
-    yum install -y wget git curl unzip java-$JAVA_VERSION-openjdk-devel which
+    yum install -y wget git curl unzip java-$JAVA_VERSION-openjdk-devel which xorg-x11-server-Xvfb
+
+RUN nohup Xvfb :1 -screen 0 1152x900x8 &
+RUN export DISPLAY="localhost:1"
 
 # install gradle
 RUN wget https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip &&\
