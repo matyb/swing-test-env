@@ -8,8 +8,6 @@ ENV GRADLE_VERSION 3.4.1
 RUN yum remove -y java &&\
     yum install -y wget git curl unzip java-$JAVA_VERSION-openjdk-devel which xorg-x11-server-Xvfb
 
-RUN nohup Xvfb :1 -screen 0 1152x900x8 &
-RUN export DISPLAY="localhost:1"
 
 # install gradle
 RUN wget https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip &&\
@@ -17,5 +15,9 @@ RUN wget https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zi
     unzip -d /etc/alternatives/gradle gradle-$GRADLE_VERSION-bin.zip &&\
     ln -s /etc/alternatives/gradle/gradle-$GRADLE_VERSION /opt/gradle
 
+ENV DISPLAY :99
 ENV PATH $PATH:/opt/gradle/bin
 RUN JAVA_HOME=$(readlink $(readlink `which java`) | gawk '$0=gensub(/\/jre\/bin\/java/,"",1)')
+ADD xvfb_init /etc/init.d/xvfb
+RUN chmod a+x /etc/init.d/xvfb
+
