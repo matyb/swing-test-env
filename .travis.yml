@@ -9,4 +9,5 @@ before_install:
   - docker build -t swing-test-env .
 
 script:
-  - docker run swing-test-env /bin/bash -c "git clone https://github.com/matyb/swing-test-env && gradle -p swing-test-env/app test"
+  - chmod +x e2e-test.sh
+  - ./e2e-test.sh

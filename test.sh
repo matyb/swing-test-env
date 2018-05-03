@@ -1,1 +1,1 @@
-./build.sh && ./run.sh './test.sh'
+./build.sh && docker run -it swing-test-env $1

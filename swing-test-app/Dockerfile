@@ -18,6 +18,7 @@ RUN wget https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zi
 ENV DISPLAY :99
 ENV PATH $PATH:/opt/gradle/bin
 RUN JAVA_HOME=$(readlink $(readlink `which java`) | gawk '$0=gensub(/\/jre\/bin\/java/,"",1)')
-ADD xvfb_init /etc/init.d/xvfb
-RUN chmod a+x /etc/init.d/xvfb
-
+ADD in-container-sanity-check.sh /sanity-check.sh
+RUN chmod +x /sanity-check.sh
+ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["Xvfb :99 & ./sanity-check.sh"]

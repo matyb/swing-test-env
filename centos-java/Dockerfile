@@ -1,4 +1,4 @@
-FROM rp-generic
+FROM centos-generic
 MAINTAINER Mat Bentley <mathewkbentley@gmail.com>
 
 ENV JAVA_VERSION 1.8.0

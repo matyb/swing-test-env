@@ -1,0 +1,5 @@
+xvfb:
+  image: centos-xvfb
+
+gradle:
+  image: centos-gradle

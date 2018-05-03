@@ -1,4 +1,4 @@
-FROM rp-generic
+FROM centos-generic
 MAINTAINER Mat Bentley <mathewkbentley@gmail.com>
 
 RUN yum install -y xorg-x11-server-Xvfb

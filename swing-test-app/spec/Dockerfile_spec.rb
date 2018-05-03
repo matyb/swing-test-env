@@ -21,7 +21,7 @@ describe "Dockerfile" do
   end
 
   it "can build app" do
-    output = command("git clone https://github.com/matyb/swing-test-env && gradle -p swing-test-env/app test").stdout
+    output = command("ls -la").stdout
     expect(output).to include(":test\n")
     expect(output).to include("BUILD SUCCESSFUL")
   end
