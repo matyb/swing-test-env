@@ -13,7 +13,7 @@ describe "Dockerfile" do
   end
 
   it "has wget installed" do
-    expect(command("wget -V").stdout).to include("GNU Wget")
+    expect(package("wget")).to be_installed
   end
 
   it "has curl installed" do
